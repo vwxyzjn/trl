@@ -12,6 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import os
+os.environ["HF_DATASETS_CACHE"] = "/fsx/costa/.cache"
 from dataclasses import dataclass, field
 from typing import Optional
 
@@ -55,7 +57,7 @@ class ScriptArguments:
             report_to="tensorboard",
             remove_unused_columns=False,
             optim="adamw_torch",
-            logging_steps=500,
+            logging_steps=5,
             evaluation_strategy="no",
             max_length=512,
         )
@@ -67,7 +69,6 @@ class ScriptArguments:
             r=16,
             lora_alpha=16,
             bias="none",
-            task_type="CAUSAL_LM",
             task_type="SEQ_CLS",
             modules_to_save=["scores"],
         ),
