@@ -236,16 +236,18 @@ accelerate launch --config_file examples/accelerate_configs/deepspeed_zero3.yaml
     --num_ppo_epochs 2 \
     --num_mini_batches 2 \
     --learning_rate 3e-6 \
-    --per_device_train_batch_size 1 \
-    --gradient_accumulation_steps 256 \
+    --per_device_train_batch_size 8 \
+    --gradient_accumulation_steps 32 \
     --total_episodes 1000000 \
     --model_name_or_path EleutherAI/pythia-6.9b-deduped \
     --sft_model_path cleanrl/EleutherAI_pythia-6.9b-deduped__sft__tldr \
     --reward_model_path cleanrl/EleutherAI_pythia-6.9b-deduped__reward__tldr \
-    --local_rollout_forward_batch_size 2 \
+    --local_rollout_forward_batch_size 8 \
     --non_eos_penalty \
     --stop_token eos \
-    --kl_coef 0.03
+    --kl_coef 0.03 \
+    --temperature 1.0 \
+    --exp_name rloo_10_rollout_temp1
 ```
 
 1B experiment can be found here:
